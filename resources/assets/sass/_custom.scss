@@ -1,0 +1,9 @@
+body{
+    background: tomato !important;
+}
+#flash-message {
+    position: absolute;
+    z-index: 10;
+    bottom: 15px;
+    right:20px;
+}
