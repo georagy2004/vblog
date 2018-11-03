@@ -9,7 +9,7 @@
         <small>Written on {{$post->created_at}} by {{$post->user->name}}</small>
         <hr>
         @if(!Auth::guest()) 
-            @if(Auth::comment()->id == $post->comment_id)      
+            @if(Auth::user()->id == $post->user_id)      
                 <a href="/posts/{{$post->id}}/edit" class="btn btn-default">Edit</a>
                 {!! Form::open(['action' => ['PostsController@destroy', $post->id], 'method' => 'POST']) !!}
                     {{Form::hidden('_method', 'DELETE')}}
