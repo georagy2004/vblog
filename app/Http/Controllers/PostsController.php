@@ -32,7 +32,7 @@ class PostsController extends Controller
         // $posts = Post::all();
         $posts = Post::orderBy('created_at', 'desc')->paginate(10);
         // return $posts;
-        return view('posts.index')->with('posts',$posts);
+        return view('posts.index')->with('posts', $posts);
 
     }
 
@@ -99,7 +99,7 @@ class PostsController extends Controller
         //                     INNER JOIN users u ON c.user_id = u.id 
         //                     WHERE c.post_id = ?', [$id]);
 
-        $comments = Comment::where('post_id', 5)->with('user')->get();                    
+        $comments = Comment::where('post_id', $id)->with('user')->get();                    
         // dd($comments[2]->user->name);
         // $post = Post::with(['user', 'comments'])->where('id', $id)->get();
         // dd($post[0]->user->name);

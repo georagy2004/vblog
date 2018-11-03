@@ -7,7 +7,9 @@
         <div class="well">
             <div class="row">
                 <div class="col-md-4">
-                    <img src = "/storage/cover_images/{{$post->cover_image}}" height="100">
+                    <a href="/posts/{{$post->id}}">
+                        <img src = "/storage/cover_images/{{$post->cover_image}}" height="100">
+                    </a>
                 </div>                
                 <div class="col-md-8">
                     <a href="/posts/{{$post->id}}">
