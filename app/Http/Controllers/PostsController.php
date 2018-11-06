@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Post;
 use App\Comment;
+use App\Tag;
 use DB;
 
 class PostsController extends Controller
@@ -31,9 +32,9 @@ class PostsController extends Controller
         // return Post::all();
         // $posts = Post::all();
         $posts = Post::orderBy('created_at', 'desc')->paginate(10);
+        //$tags = Tag::all();
         // return $posts;
-        return view('posts.index')->with('posts', $posts);
-
+        return view('posts.index', compact('posts'));
     }
 
     /**
@@ -109,7 +110,7 @@ class PostsController extends Controller
 
 
         // return view('posts.show', compact('post'));
-        return view('posts.show', compact(['post', 'comments']));
+        return view('posts.show', compact('post', 'comments'));
     }
 
     /**

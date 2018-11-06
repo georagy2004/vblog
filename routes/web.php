@@ -31,6 +31,8 @@ Route::get('/services', 'PagesController@services');
 
 Route::post('/posts/{post}/comments', 'CommentsController@store');
 // Route::get('/posts/{post}/comments', 'CommentsController@show');
+Route::get('/posts/tags/{tag}', 'TagsController@index');
+
 
 Route::resource('posts', 'PostsController');
 
