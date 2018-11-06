@@ -23,7 +23,7 @@
                 </div>
                 @endforeach
             </div>
-            @include('inc.tags');
+            @include('inc.tags')
         </div>
         {{$posts->links()}}
     @else
