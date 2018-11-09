@@ -5,8 +5,9 @@ namespace App\Listeners;
 use App\Events\UserRegistered;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Notifications\NeedToActivate;
 
-class sendActivation
+class sendActivation implements ShouldQueue
 {
     /**
      * Create the event listener.
@@ -27,5 +28,7 @@ class sendActivation
     public function handle(UserRegistered $event)
     {
         \Log::info('sendActivation', ['user' => $event->user]);
+
+        $event->user->notify(new NeedToActivate());
     }
 }
