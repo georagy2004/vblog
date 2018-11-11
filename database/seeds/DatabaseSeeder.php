@@ -13,41 +13,25 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
         
-        $users = factory(App\User::class, 5)->create();
-        $users->each(function($users){
-            $users->posts()
-                  ->saveMany(factory(App\Post::class, 3)
-                  ->make(['user_id' => mt_rand(1, 5)]));
-        });
-            //mt_rand(0, 5) Each user has 0-5 comments.      
-            // $users->comments()
-            //       ->saveMany(factory(App\Comment::class, mt_rand(0,5))
-            //       ->make([]));
-        for($i=0; $i<25; $i++){
-            factory(App\Comment::class)->create([
-                'user_id' => mt_rand(1, 5),
-                'post_id' => mt_rand(1, 5),
-            ]);
-        };
+        factory(App\User::class, 5)->create();
+        factory(App\Post::class, 20)->create();
+        factory(App\Comment::class, 30)->create();
+        factory(App\Tag::class, 8)->create();
 
 
-        // $user = factory(App\User::class, 5)->create();
-        // $user->each(function($user){
-        //     $user->posts()
-        //     ->saveMany(factory(App\Post::class,  2))
-        //     ->create()->each(function(App\Post $post){
-        //           factory(App\Comment::class, 5)->create([
-        //               'user_id' => mt_rand(1, 5),
-        //               ]);
-        //     });
+
+        // $users->each(function($users){
+        //     $users->posts()
+        //           ->saveMany(factory(App\Post::class, 3)
+        //           ->make(['user_id' => mt_rand(1, 5)]));
         // });
-        
+            //mt_rand(0, 5) Each user has 0-5 comments.      
 
-        //$comments = factory(App\Comment::class, 20)->create();
-        
-        // $comments = factory(Comment::class, mt_rand(0,3))->make();
-        // for ($i=0; $i < $comments->count(); $i++) { 
-        //     $users->comments()->save($comments[$i]);
-        // }
+        // for($i=0; $i<25; $i++){
+        //     factory(App\Comment::class)->create([
+        //         'user_id' => mt_rand(1, 5),
+        //         'post_id' => mt_rand(1, 5),
+        //     ]);
+        // };
     }
 }

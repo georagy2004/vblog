@@ -11,20 +11,30 @@ class CommentsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['show']]);
+        $this->middleware('auth', ['except' => ['show', 'commentSave']]);
     }
 
-    public function show(Post $post){
-        dd($post);
-    }
     public function store(Post $post){
-        Comment::create([
-            'body' => request('body'),
-            'post_id'  => $post->id,
-            'user_id' => auth()->user()->id
-        ]);
-        
-        return back()->with('success', 'Add comment succeeded');
+        if(session('comment')){
+            $comment = Comment::create([
+                'body' => session('comment'),
+                'post_id'  => $post->id,
+                'user_id' => auth()->user()->id
+            ]);
+            session(['comment' => null]);
+            return redirect("posts/$post->id")->with('success', 'Add comment succeeded');
+        }
+        return redirect("posts/$post->id");         
     }
-    
+
+    public function commentSave(Request $request){
+        // $request->session()
+        // dd(\URL::previous());
+        $url = \URL::previous();
+        session(['comment' => $request->input('body')]);
+        session(['url' => $url]);
+        \Session::save();
+        // dd(session('comment'));
+        return redirect("$url/comments");
+    }    
 }

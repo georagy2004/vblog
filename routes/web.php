@@ -29,7 +29,8 @@ Route::get('/home', 'PagesController@index');
 Route::get('/about', 'PagesController@about');
 Route::get('/services', 'PagesController@services');
 
-Route::post('/posts/{post}/comments', 'CommentsController@store');
+Route::get('/posts/{post}/comments', 'CommentsController@store')->name('addComment');
+Route::post('/posts/{post}/comments', 'CommentsController@commentSave');
 // Route::get('/posts/{post}/comments', 'CommentsController@show');
 Route::get('/posts/tags/{tag}', 'TagsController@index');
 
@@ -37,5 +38,6 @@ Route::get('/posts/tags/{tag}', 'TagsController@index');
 Route::resource('posts', 'PostsController');
 
 Auth::routes();
+Route::get('/verification/{id}/{verify_token}','VerificationController@emailVerify' );
 
 Route::get('/dashboard', 'DashboardController@index');

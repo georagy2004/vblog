@@ -1,2 +1,1 @@
-
-    $('#flash-message').delay(500).fadeOut(500);
+$('#flash-message').delay(500).fadeOut(3000);

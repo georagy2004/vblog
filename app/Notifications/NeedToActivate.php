@@ -6,19 +6,20 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-
+use App\User;
 class NeedToActivate extends Notification
 {
     use Queueable;
 
+    public $user;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(User $user)
     {
-        //
+        $this->user = $user;
     }
 
     /**
@@ -40,9 +41,10 @@ class NeedToActivate extends Notification
      */
     public function toMail($notifiable)
     {
+        $url = url('/verification').'/'.$this->user->id.'/'.$this->user->verify_token;
         return (new MailMessage)->subject('Account Activation')->greeting('你好')
                     ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
+                    ->action('Notification Action', $url)
                     ->line('Thank you for using our application!');
     }
 

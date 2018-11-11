@@ -27,8 +27,9 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(Request $request)
+    {   
+        // dd($request->session()->all());
         // return Post::all();
         // $posts = Post::all();
         $posts = Post::orderBy('created_at', 'desc')->paginate(10);
@@ -92,8 +93,9 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, Request $request)
     {
+        // if(\Auth::check()){dd($request->session()->all());}
         $post = Post::find($id);
         // $comments = DB::select('SELECT c.body , c.created_at , c.user_id , u.name
         //                     FROM comments c 

@@ -23,9 +23,10 @@ $factory->define(App\User::class, function (Faker $faker) {
 //App\Post::class 中的App\Post 是一个整体
 $factory->define(App\Post::class, function (Faker $faker) {
     return [
-        'user_id' => function(){
-            return factory(App\User::class)->create()->id;
-        },
+        // 'user_id' => function(){
+        //     return factory(App\User::class)->create()->id;
+        // },
+        'user_id' => App\User::all()->random()->id,
         'title' => $faker->sentence,
         'body'  => $faker->paragraph,
         'cover_image' => 'noimage.jpg',
@@ -34,13 +35,20 @@ $factory->define(App\Post::class, function (Faker $faker) {
 
 $factory->define(App\Comment::class, function (Faker $faker) {
     return [
-        'user_id' => function(){
-            return factory(App\User::class)->create()->id;
-        },
-        'post_id' => function(){
-            return factory(App\Post::class)->create()->id;
-        },
+        // 'user_id' => function(){
+        //     return factory(App\User::class)->create()->id;
+        // },
+        'user_id' => App\User::all()->random()->id,
+        // 'post_id' => function(){
+        //     return factory(App\Post::class)->create()->id;
+        // },
+        'post_id' => App\Post::all()->random()->id,
         'body'  => $faker->sentence,
     ];
 });
 
+$factory->define(App\Tag::class, function (Faker $faker) {
+    return [
+        'name' => $faker->word,
+    ];
+});

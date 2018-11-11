@@ -31,14 +31,15 @@ class AppServiceProvider extends ServiceProvider
             // $view->with(compact('tags', 'archives')); 
         });
 
-        //DB查询日志 storage/log/laravel.log
-        // DB::listen(function($query) {
-        //     Log::info(
-        //         $query->sql,
-        //         $query->bindings,
-        //         $query->time
-        //     );
-        // });
+        /** DB查询日志 storage/log/laravel.log*/
+        
+        DB::listen(function($query) {
+            Log::info(
+                $query->sql,
+                $query->bindings,
+                $query->time
+            );
+        });
 
         /**
          * Paginate a standard Laravel Collection.

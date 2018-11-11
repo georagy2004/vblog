@@ -67,6 +67,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'verify_token' => str_random(40),
         ]);
 
         event(new \App\Events\UserRegistered($user));
@@ -74,13 +75,4 @@ class RegisterController extends Controller
         return $user;
     }
 
-    // protected function assignRoleTo($user){
-    //     \Log::info('assignRoleTo', ['user' => $user]);
-    //     return $this;
-    // }
-
-    // protected function sendActivation($user){
-    //     \Log::info('sendActivation', ['user' => $user]);
-    //     return $this;
-    // }
 }

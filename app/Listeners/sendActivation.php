@@ -27,8 +27,8 @@ class sendActivation implements ShouldQueue
      */
     public function handle(UserRegistered $event)
     {
-        \Log::info('sendActivation', ['user' => $event->user]);
+        \Log::info('sendActivation', ['verify_token' => $event->user->verify_token]);
 
-        $event->user->notify(new NeedToActivate());
+        $event->user->notify(new NeedToActivate($event->user));
     }
 }
