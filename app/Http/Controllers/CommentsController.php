@@ -32,8 +32,8 @@ class CommentsController extends Controller
         // dd(\URL::previous());
         $url = \URL::previous();
         session(['comment' => $request->input('body')]);
-        session(['url' => $url]);
-        \Session::save();
+        // session(['url' => $url]);
+        // \Session::save();
         // dd(session('comment'));
         return redirect("$url/comments");
     }    

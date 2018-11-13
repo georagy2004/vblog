@@ -7,7 +7,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Notifications\NeedToActivate;
 
-class sendActivation implements ShouldQueue
+class sendActivation
 {
     /**
      * Create the event listener.

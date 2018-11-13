@@ -31,8 +31,9 @@ Route::get('/services', 'PagesController@services');
 
 Route::get('/posts/{post}/comments', 'CommentsController@store')->name('addComment');
 Route::post('/posts/{post}/comments', 'CommentsController@commentSave');
-// Route::get('/posts/{post}/comments', 'CommentsController@show');
 Route::get('/posts/tags/{tag}', 'TagsController@index');
+
+Route::get('/send_verification_mail', 'VerificationController@sendMail')->name('sendMail');
 
 
 Route::resource('posts', 'PostsController');

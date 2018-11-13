@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Notifications\NeedToActivate;
 
 class VerificationController extends Controller
 {
@@ -25,5 +26,11 @@ class VerificationController extends Controller
 
         return redirect('/posts')->with('success', $success);
     
+    }
+
+    public function sendMail(){
+        $user = auth()->user();
+        $user->notify(new NeedToActivate($user));
+        return back()->with('success', 'Your e-mail has been resent.');
     }
 }
